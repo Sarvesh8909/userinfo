@@ -1,0 +1,32 @@
+app.get('/read', async (req, res) => {
+  try {
+    let users = await userModel.find();
+    res.render("read", { users });
+
+
+
+    <% if (users && users.length > 0) { %>
+
+                <% users.forEach(function(user){ %>
+                    <div class="user w-72 p-4 bg-zinc-800 rounded-lg">
+
+                        <div class="w-full h-52 bg-red-500 rounded-lg overflow-hidden">
+                            <img class="w-full h-full object-cover" src="<%= user.image %>" alt="">
+                        </div>
+
+                        <h3 class="text-xl tracking-tighter mt-3"><%= user.name %></h3>
+                        <h5 class="text-zinc-500"><%= user.email %></h5>
+
+                        <div class="flex gap-3 mt-10">
+                            <a class="text-blue-400" href="">Edit user</a>
+                            <a class="text-red-600" href="">Delete user</a>
+                        </div>
+
+                    </div>
+                <% }) %>
+
+            <% } else { %>
+                <h2 class="text-zinc-400">No users found.</h2>
+            <% } %>
+
+        </div>
